@@ -16,6 +16,7 @@ import { GithubService } from "../../core/services/github.service";
 export class IssuesComponent implements OnInit {
   public issues: Issue[] = [];
   public loading = false;
+  public error = false;
 
   public owner = "nestjs";
   public repo = "nest";
@@ -30,12 +31,18 @@ export class IssuesComponent implements OnInit {
     if (!this.owner.trim() || !this.repo.trim()) return;
 
     this.loading = true;
+    this.error = false;
+
     this.github
       .getIssues(this.owner, this.repo)
       .pipe(
         take(1),
-        catchError((_) => {
+        catchError((err) => {
+          this.issues = [];
+          this.error = true;
           this.loading = false;
+          console.error("Erro ao buscar issues:", err);
+
           return of({ items: [] });
         })
       )

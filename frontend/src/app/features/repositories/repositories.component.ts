@@ -17,6 +17,7 @@ export class RepositoriesComponent {
   public repositories: Repository[] = [];
   public total = 0;
   public rows = 10;
+  public error = false;
   public loading = true;
   public query = "nestjs";
 
@@ -24,13 +25,20 @@ export class RepositoriesComponent {
 
   public loadRepos(page: number = 1): void {
     this.loading = true;
+    this.error = false;
 
     this.github
       .getRepositories(this.query, page, this.rows)
       .pipe(
         take(1),
-        catchError((_) => {
+        catchError((err) => {
+          this.total = 0;
+          this.error = true;
           this.loading = false;
+          this.repositories = [];
+
+          console.error("Erro ao buscar repositórios:", err);
+
           return of({ items: [], total_count: 0 });
         })
       )

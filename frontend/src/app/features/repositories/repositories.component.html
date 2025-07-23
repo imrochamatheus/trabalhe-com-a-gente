@@ -2,7 +2,7 @@
     <div class="flex items-center gap-2 mb-6">
         <input type="text" pInputText placeholder="Buscar repositórios..." [(ngModel)]="query"
             (keydown.enter)="onSearch()"
-            class="flex-1 px-4 py-2 border border-slate-300 rounded-lg shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 transition" />
+            class="flex-1 px-4 py-2 border border-slate-300 rounded-lg shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500 transition" />
         <button pButton icon="pi pi-search" (click)="onSearch()"
             class="px-4 py-2 bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-700 transition">
             Buscar</button>
@@ -31,5 +31,19 @@
                 <td class="px-4 py-2">{{ repo.forks_count }}</td>
             </tr>
         </ng-template>
+
+        <ng-template pTemplate="emptymessage">
+            <tr>
+                <td colspan="5" class="text-center text-slate-500 py-6">
+                    @if (error) {
+                    <p class="text-gray-500 flex items-center justify-center">Erro ao buscar repositórios. Tente
+                        novamente.</p>
+                    } @else {
+                    <p class="text-gray-500 flex items-center justify-center">Nenhum repositório encontrado.</p>
+                    }
+                </td>
+            </tr>
+        </ng-template>
+
     </p-table>
 </div>
