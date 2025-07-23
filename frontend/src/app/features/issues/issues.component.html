@@ -1,0 +1,42 @@
+<div class="max-w-6xl mx-auto px-4 py-6">
+    <div class="flex flex-col sm:flex-row gap-4 items-center mb-6 ">
+        <input type="text" [(ngModel)]="owner" placeholder="Owner (ex: nestjs)"
+            class="px-4 py-2 w-full border border-slate-300 rounded-lg shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500 transition" />
+        <input type="text" [(ngModel)]="repo" placeholder="Repositório (ex: nest)"
+            class="px-4 py-2 w-full border border-slate-300 rounded-lg shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500 transition" />
+        <button (click)="searchIssues()"
+            class="px-6 py-2 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 transition align-self-start">
+            Buscar
+        </button>
+    </div>
+
+    <p-table [value]="issues" [paginator]="true" [rows]="10" [loading]="loading"
+        class="shadow-md rounded-lg overflow-hidden">
+        <ng-template pTemplate="header">
+            <tr class="bg-slate-200 text-slate-700">
+                <th class="px-4 py-2 text-left">Título</th>
+                <th class="px-4 py-2 text-left">Status</th>
+                <th class="px-4 py-2 text-left">Usuário</th>
+                <th class="px-4 py-2 text-left">Comentários</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-issue>
+            <tr class="hover:bg-slate-100 even:bg-slate-50 transition">
+                <td class="px-4 py-2">
+                    <a [href]="issue.html_url" target="_blank" class="text-blue-600 hover:underline">{{ issue.title
+                        }}</a>
+                </td>
+                <td class="px-4 py-2 capitalize">
+                    <span class="inline-block px-2 py-1 rounded-full text-xs font-medium" [ngClass]="{
+              'bg-green-200 text-green-800': issue.state === 'open',
+              'bg-red-200 text-red-800': issue.state === 'closed'
+            }">
+                        {{ issue.state }}
+                    </span>
+                </td>
+                <td class="px-4 py-2 text-slate-700">{{ issue.user.login }}</td>
+                <td class="px-4 py-2 text-slate-700">{{ issue.comments }}</td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>

@@ -1,0 +1,35 @@
+<div class="max-w-4xl mx-auto my-8">
+    <div class="flex items-center gap-2 mb-6">
+        <input type="text" pInputText placeholder="Buscar repositórios..." [(ngModel)]="query"
+            (keydown.enter)="onSearch()"
+            class="flex-1 px-4 py-2 border border-slate-300 rounded-lg shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 transition" />
+        <button pButton icon="pi pi-search" (click)="onSearch()"
+            class="px-4 py-2 bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-700 transition">
+            Buscar</button>
+    </div>
+
+    <p-table [value]="repositories" [lazy]="true" [paginator]="true" [rows]="rows" [totalRecords]="total"
+        (onLazyLoad)="onPage($event)" [loading]="loading" class="shadow-md rounded-lg overflow-hidden">
+        <ng-template pTemplate="header">
+            <tr class="bg-slate-200 text-slate-700">
+                <th class="px-4 py-2 text-left">Nome</th>
+                <th class="px-4 py-2 text-left">Descrição</th>
+                <th class="px-4 py-2 text-left">Estrelas</th>
+                <th class="px-4 py-2 text-left">Watchers</th>
+                <th class="px-4 py-2 text-left">Forks</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-repo>
+            <tr class="hover:bg-slate-100 even:bg-slate-50 transition">
+                <td class="px-4 py-2">
+                    <a [href]="repo.html_url" target="_blank" class="text-blue-600 hover:underline">{{ repo.full_name
+                        }}</a>
+                </td>
+                <td class="px-4 py-2">{{ repo.description }}</td>
+                <td class="px-4 py-2">{{ repo.stargazers_count }}</td>
+                <td class="px-4 py-2">{{ repo.watchers_count }}</td>
+                <td class="px-4 py-2">{{ repo.forks_count }}</td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
