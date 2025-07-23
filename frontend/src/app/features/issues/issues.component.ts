@@ -11,7 +11,6 @@ import { GithubService } from "../../core/services/github.service";
   selector: "app-issues",
   imports: [CommonModule, TableModule, FormsModule],
   templateUrl: "./issues.component.html",
-  styleUrl: "./issues.component.scss",
 })
 export class IssuesComponent implements OnInit {
   public issues: Issue[] = [];

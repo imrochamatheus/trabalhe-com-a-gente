@@ -11,7 +11,6 @@ import { LazyLoadEvent } from "primeng/api";
   selector: "app-repositories",
   imports: [TableModule, FormsModule],
   templateUrl: "./repositories.component.html",
-  styleUrl: "./repositories.component.scss",
 })
 export class RepositoriesComponent {
   public repositories: Repository[] = [];
