@@ -36,8 +36,6 @@ export class RepositoriesComponent {
           this.loading = false;
           this.repositories = [];
 
-          console.error("Erro ao buscar repositórios:", err);
-
           return of({ items: [], total_count: 0 });
         })
       )
@@ -49,6 +47,10 @@ export class RepositoriesComponent {
   }
 
   public onSearch(): void {
+    if (!this.query?.trim()) {
+      return;
+    }
+
     this.loadRepos(1);
   }
 

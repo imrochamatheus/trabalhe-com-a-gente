@@ -1,13 +1,14 @@
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
+import { environment } from "../../../environments/environment";
 import { GithubResponse } from "../../shared/models/github.model";
-import { Repository } from "../../shared/models/repository.model";
 import { Issue } from "../../shared/models/issue.model";
+import { Repository } from "../../shared/models/repository.model";
 
 @Injectable({ providedIn: "root" })
 export class GithubService {
-  private baseUrl = "http://localhost:8200/github";
+  private baseUrl = environment.apiUrl;
 
   constructor(private readonly http: HttpClient) {}
 

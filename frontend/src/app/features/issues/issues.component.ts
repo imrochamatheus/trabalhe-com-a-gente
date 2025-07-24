@@ -40,7 +40,6 @@ export class IssuesComponent implements OnInit {
           this.issues = [];
           this.error = true;
           this.loading = false;
-          console.error("Erro ao buscar issues:", err);
 
           return of({ items: [] });
         })
