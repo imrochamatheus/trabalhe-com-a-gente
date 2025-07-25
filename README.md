@@ -1,6 +1,6 @@
-# GitHub Repository Search SPA
+# GitHub Search
 
-Uma aplicação full-stack que permite pesquisar repositórios do GitHub com paginação e exibição de dados relevantes como descrição, estrelas, watchers e issues. Desenvolvida como solução para o desafio de Frontend Developer.
+Uma aplicação full-stack que permite pesquisar repositórios do GitHub com paginação e exibição de dados relevantes como descrição, estrelas, watchers e issues. Desenvolvida como solução para o desafio de Full-Stack Developer.
 
 ---
 
