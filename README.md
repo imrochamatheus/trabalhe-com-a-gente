@@ -73,7 +73,7 @@ Uma aplicação full-stack que permite pesquisar repositórios do GitHub com pag
 Dentro da pasta `frontend/`:
 
 ```bash
-npm install
+npm install --legacy-peer-deps
 npm run test
 ```
 
